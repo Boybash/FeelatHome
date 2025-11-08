@@ -1,0 +1,172 @@
+import React from "react";
+import property1 from "../assets/property 1.png";
+import property2 from "../assets/property 2.png";
+import property3 from "../assets/property 3.png";
+import property4 from "../assets/property 4.png";
+import property5 from "../assets/property 5.png";
+import property6 from "../assets/property 6.png";
+import icon7 from "../assets/Icon 7.png";
+import icon8 from "../assets/Icon 8.png";
+import icon9 from "../assets/Icon 9.png";
+import arrow from "../assets/arrow.png";
+const Features = () => {
+  const properties = [
+    {
+      id: 1,
+      image: property1,
+      title: "Modern Apartment",
+      price: "#200,000/mo",
+      location: "Lagos, Nigeria",
+      roomImages: icon7,
+      rooms: "3",
+      toiletImages: icon8,
+      toilets: "2",
+      areaImages: icon9,
+      area: "1500 sqft",
+      status: "For Rent",
+    },
+    {
+      id: 2,
+      image: property2,
+      title: "Luxury Villa",
+      price: "#150,000/mo",
+      location: "Abuja, Nigeria",
+      roomImages: icon7,
+      rooms: "4",
+      toiletImages: icon8,
+      toilets: "3",
+      areaImages: icon9,
+      area: "2500 sqft",
+      status: "For Rent",
+    },
+    {
+      id: 3,
+      image: property3,
+      title: "Cozy Townhouse",
+      price: "#100,000/mo",
+      location: "Port Harcourt, Nigeria",
+      roomImages: icon7,
+      rooms: "2",
+      toiletImages: icon8,
+      toilets: "1",
+      areaImages: icon9,
+      area: "1200 sqft",
+      status: "For Sale",
+    },
+    {
+      id: 4,
+      image: property4,
+      title: "Spacious Bungalow",
+      price: "#300,000/mo",
+      location: "Kano, Nigeria",
+      roomImages: icon7,
+      rooms: "5",
+      toiletImages: icon8,
+      toilets: "4",
+      areaImages: icon9,
+      area: "3000 sqft",
+      status: "For Sale",
+    },
+    {
+      id: 5,
+      image: property5,
+      title: "Downtown Condo",
+      price: "#400,00/yr",
+      location: "Ibadan, Nigeria",
+      roomImages: icon7,
+      rooms: "3",
+      toiletImages: icon8,
+      toilets: "2",
+      areaImages: icon9,
+      area: "1800 sqft",
+      status: "For Sale",
+    },
+    {
+      id: 6,
+      image: property6,
+      title: "Suburban Home",
+      price: "#500,000/yr",
+      location: "Enugu, Nigeria",
+      roomImages: icon7,
+      rooms: "4",
+      toiletImages: icon8,
+      toilets: "3",
+      areaImages: icon9,
+      area: "2200 sqft",
+      status: "For Rent",
+    },
+  ];
+  return (
+    <section className="bg-[#F7F7F7] mx-auto py-20 w-full">
+      <div className="mx-auto text-center my-0">
+        <h2 className="my-1 font-bold text-3xl">Featured Properties</h2>
+        <p>Check out all the properties available</p>
+      </div>
+      <ul className="flex justify-center items-center gap-5 mx-auto my-10">
+        <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white">
+          All Properties
+        </li>
+        <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white ">
+          For Sale
+        </li>
+        <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 bg-[#1F4B43] text-white cursor-pointer">
+          For Rent
+        </li>
+      </ul>
+
+      <div className="grid grid-cols-3 gap-5 justify-center items-center mx-auto w-[1000px] my-10">
+        {properties.map((property) => (
+          <div key={property.id} className="relative cursor-pointer">
+            <img
+              className="w-[300px] rounded-xl"
+              src={property.image}
+              alt={property.title}
+            />
+
+            <div className="flex gap-2 my-2 absolute top-2 left-2">
+              <h3 className="bg-[#1F4B43] p-2 px-4 text-sm rounded-4xl uppercase text-white">
+                {property.status}
+              </h3>
+              <h3 className="bg-[#E7C873] p-2 px-4 text-sm rounded-4xl uppercase text-black">
+                Featured
+              </h3>
+            </div>
+
+            <div className="absolute top-45 left-3 justify-center items-center bg-white rounded-xl p-2 ">
+              <div>
+                <h3>{property.title}</h3>
+                <div className="flex gap-1">
+                  <img src={property.areaImages} alt="area icon" />
+                  <span className="text-xs">{property.area}</span>
+                </div>
+                <p>{property.location}</p>
+              </div>
+
+              <div className="flex gap-4">
+                <h2 className="text-[#EB664E]">{property.price}</h2>
+                <div className="flex justify-center items-center gap-0.5">
+                  <img src={property.roomImages} alt="room icon" />
+                  <span className="text-xs text-center mt-1">
+                    {property.rooms} Rooms
+                  </span>
+                </div>
+                <div className="flex justify-center items-center gap-0.5">
+                  <img src={property.toiletImages} alt="toilet icon" />
+                  <span className="text-xs text-center mt-1">
+                    {property.toilets} Toilet
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center items-center gap-1 mb-10 bg-[#E7C873] py-2 px-4 w-[200px] mx-auto rounded-4xl cursor-pointer">
+        <button>See All Listing</button>
+        <img src={arrow} alt="arrow" />
+      </div>
+    </section>
+  );
+};
+
+export default Features;
