@@ -21,9 +21,9 @@ import toileticon from "../assets/icon 8.png";
 const Testimonial = () => {
   return (
     <>
-      <section className="bg-[#F7F7F7] mx-auto p-20 w-full">
+      <section className="bg-[#F7F7F7]  mx-auto p-20 w-full font-display">
         <div className="flex justify-around items-center mx-auto">
-          <div className=" w-[300px]">
+          <div className=" w-[300px] h-[400px]">
             <h1 className="font-bold text-2xl">
               What our customers are saying about us
             </h1>
@@ -44,7 +44,7 @@ const Testimonial = () => {
             </div>
           </div>
 
-          <div className="w-[400px] relative">
+          <div className="w-[400px] h-[400px] relative">
             <div>
               <img
                 className="absolute top-50 left-0 cursor-pointer"
@@ -85,7 +85,7 @@ const Testimonial = () => {
             </p>
           </div>
         </div>
-        <div className="mx-auto flex flex-col items-center mt-50">
+        <div className="mx-auto flex flex-col items-center">
           <h2>Thousands of world’s leading companies trust Space</h2>
           <div className="flex justify-between items-center mx-auto gap-30 mt-10">
             <img src={amazon} alt="amazon" />
@@ -97,7 +97,7 @@ const Testimonial = () => {
           </div>
         </div>
       </section>
-      <div className=" mx-auto bg-[#1A1A1A] w-full my-0 p-20 relative">
+      <div className=" mx-auto bg-[#1A1A1A] w-full my-0 p-20 relative font-display">
         <div className="mx-auto flex flex-col justify-center items-center gap-2">
           <h2 className="font-bold text-3xl text-white">Best Properties</h2>
           <p className="text-white text-sm">
@@ -112,22 +112,22 @@ const Testimonial = () => {
               className="w-full h-full object-cover rounded-2xl"
             />
           </div>
-          <div class="col-span-1 row-span-1">
+          <div className="col-span-1 row-span-1">
             <img
               src={house5}
               alt="house5"
               className="w-full h-full object-cover rounded-2xl"
             />
           </div>
-          <div class="col-span-1 row-span-1 grid grid-cols-2 gap-4">
+          <div className="col-span-1 row-span-1 grid grid-cols-2 gap-4">
             <img
               src={house6}
               alt="house6"
-              class="w-full h-full object-cover col-span-1 rounded-2xl"
+              className="w-full h-full object-cover col-span-1 rounded-2xl"
             />
             <div className="w-full h-full p-4 flex flex-col justify-center bg-[#E7C873] rounded-2xl relative">
               <h2 className="text-3xl font-bold">280+</h2>
-              <span class="block">properties Available</span>
+              <span className="block">properties Available</span>
               <p className="mt-10">
                 Explore our wide variety of properties to find your dream home
                 today.

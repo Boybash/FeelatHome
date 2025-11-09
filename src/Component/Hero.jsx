@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <>
       <section
-        className={`bg-[url('https://images.pexels.com/photos/1642125/pexels-photo-1642125.jpeg?cs=srgb&dl=pexels-thelazyartist-1642125.jpg&fm=jpg')] bg-cover bg-center h-[500px] w-full`}
+        className={`bg-[url('https://images.pexels.com/photos/1642125/pexels-photo-1642125.jpeg?cs=srgb&dl=pexels-thelazyartist-1642125.jpg&fm=jpg')] bg-cover bg-center h-[500px] w-full font-display`}
       >
         <div className="mx-auto flex flex-col justify-center items-center absolute top-30 left-0 right-0">
           <h2 className="text-white rounded-4xl border-4 border-solid border-[#1F4B43] bg-[#00000090] text-center p-3 px-5 font-bold uppercase text-xl font-roboto ">

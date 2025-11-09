@@ -42,7 +42,7 @@ const City = () => {
   ];
   return (
     <>
-      <section className="bg-[#F7F7F7] w-full p-3 md:p-10 lg:p-10 mx-auto">
+      <section className="bg-[#F7F7F7] w-full p-3 md:p-10 lg:p-10 mx-auto font-display">
         <div>
           <h2 className="text-3xl text-center font-bold">
             Find Properties in These Cities

@@ -97,7 +97,7 @@ const Features = () => {
     },
   ];
   return (
-    <section className="bg-[#F7F7F7] mx-auto py-20 w-full">
+    <section className="bg-[#F7F7F7] mx-auto py-20 w-full font-display">
       <div className="mx-auto text-center my-0">
         <h2 className="my-1 font-bold text-3xl">Featured Properties</h2>
         <p>Check out all the properties available</p>

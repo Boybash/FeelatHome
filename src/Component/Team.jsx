@@ -5,7 +5,7 @@ import blackimage3 from "../assets/black image 3.jpeg";
 import blackimage4 from "../assets/black image 4.jpeg";
 const Team = () => {
   return (
-    <section className="bg-[#F7F7F7] mx-auto p-20 w-full flex flex-col gap-10 ">
+    <section className="bg-[#F7F7F7] mx-auto p-20 w-full flex flex-col gap-10 font-display">
       <div className="flex flex-col justify-center items-center">
         <h2 className="font-bold text-2xl mb-2">Meet Our Team of Expert</h2>
         <p>We are good at what we do</p>

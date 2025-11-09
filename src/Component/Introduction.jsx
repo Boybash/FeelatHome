@@ -5,7 +5,7 @@ import icon6 from "../assets/Icon 6.png";
 const Introduction = () => {
   return (
     <>
-      <section className="bg-[#F7F7F7] w-full nx-auto">
+      <section className="bg-[#F7F7F7] w-full nx-auto font-display">
         <div className="flex flex-col justify-center items-center gap-1 mx-auto w-[800px] text-center py-10 mb-10">
           <h1 className="font-bold text-2xl">Why You Should Work With Us</h1>
           <p>
