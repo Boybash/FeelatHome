@@ -71,7 +71,7 @@ const Features = () => {
       id: 5,
       image: property5,
       title: "Downtown Condo",
-      price: "#400,00/yr",
+      price: "#400,000/yr",
       location: "Ibadan, Nigeria",
       roomImages: icon7,
       rooms: "3",
@@ -97,12 +97,12 @@ const Features = () => {
     },
   ];
   return (
-    <section className="bg-[#F7F7F7] mx-auto py-20 w-full font-display">
+    <section className="bg-[#F7F7F7] mx-auto py-5 w-full font-display">
       <div className="mx-auto text-center my-0">
         <h2 className="my-1 font-bold text-3xl">Featured Properties</h2>
         <p>Check out all the properties available</p>
       </div>
-      <ul className="flex justify-center items-center gap-5 mx-auto my-10">
+      <ul className="flex justify-center items-center gap-5 mx-auto my-5 max-[410px]:flex-col">
         <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white">
           All Properties
         </li>
@@ -114,47 +114,62 @@ const Features = () => {
         </li>
       </ul>
 
-      <div className="grid grid-cols-3 gap-5 justify-center items-center mx-auto w-[1000px] my-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center mx-auto max-w-7xl w-full my-10 px-4">
         {properties.map((property) => (
-          <div key={property.id} className="relative cursor-pointer">
-            <img
-              className="w-[300px] rounded-xl"
-              src={property.image}
-              alt={property.title}
-            />
+          <div
+            key={property.id}
+            className="relative cursor-pointer w-full max-w-sm shadow-lg rounded-xl overflow-hidden transition duration-300 hover:shadow-xl"
+          >
+            <div className="relative">
+              <img
+                className="w-full h-64 object-cover rounded-t-xl"
+                src={property.image}
+                alt={property.title}
+              />
 
-            <div className="flex gap-2 my-2 absolute top-2 left-2">
-              <h3 className="bg-[#1F4B43] p-2 px-4 text-sm rounded-4xl uppercase text-white">
-                {property.status}
-              </h3>
-              <h3 className="bg-[#E7C873] p-2 px-4 text-sm rounded-4xl uppercase text-black">
-                Featured
-              </h3>
+              <div className="flex gap-2 my-2 absolute top-2 left-2 z-10">
+                <h3 className="bg-[#1F4B43] p-1.5 px-3 text-xs rounded-full uppercase text-white font-medium">
+                  {property.status}
+                </h3>
+                <h3 className="bg-[#E7C873] p-1.5 px-3 text-xs rounded-full uppercase text-black font-medium">
+                  Featured
+                </h3>
+              </div>
             </div>
 
-            <div className="absolute top-45 left-3 justify-center items-center bg-white rounded-xl p-2 ">
+            <div className="flex flex-col justify-center items-start bg-[#E7C873] w-full rounded-b-xl p-3">
               <div>
-                <h3>{property.title}</h3>
-                <div className="flex gap-1">
-                  <img src={property.areaImages} alt="area icon" />
-                  <span className="text-xs">{property.area}</span>
-                </div>
-                <p>{property.location}</p>
+                <h3 className="text-lg font-semibold">{property.title}</h3>
+                <p className="text-sm text-gray-700">{property.location}</p>
+                <h2 className="text-xl font-bold text-[#EB664E] mt-1">
+                  {property.price}
+                </h2>
               </div>
 
-              <div className="flex gap-4">
-                <h2 className="text-[#EB664E]">{property.price}</h2>
-                <div className="flex justify-center items-center gap-0.5">
-                  <img src={property.roomImages} alt="room icon" />
-                  <span className="text-xs text-center mt-1">
-                    {property.rooms} Rooms
-                  </span>
+              <div className="flex flex-wrap gap-4 mt-3 text-sm">
+                <div className="flex items-center gap-1">
+                  <img
+                    src={property.areaImages}
+                    alt="area icon"
+                    className="w-4 h-4"
+                  />
+                  <span className="text-sm">{property.area}</span>
                 </div>
-                <div className="flex justify-center items-center gap-0.5">
-                  <img src={property.toiletImages} alt="toilet icon" />
-                  <span className="text-xs text-center mt-1">
-                    {property.toilets} Toilet
-                  </span>
+                <div className="flex items-center gap-1">
+                  <img
+                    src={property.roomImages}
+                    alt="room icon"
+                    className="w-4 h-4"
+                  />
+                  <span className="text-sm">{property.rooms} Rooms</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <img
+                    src={property.toiletImages}
+                    alt="toilet icon"
+                    className="w-4 h-4"
+                  />
+                  <span className="text-sm">{property.toilets} Toilet</span>
                 </div>
               </div>
             </div>

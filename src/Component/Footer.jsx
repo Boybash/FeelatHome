@@ -6,63 +6,91 @@ import Linkedinlogo from "../assets/WHITE LINKEDIN.png";
 const Footer = () => {
   return (
     <>
-      <section className="bg-[#1F4B43] mx-ato w-fill my-0 font-display">
-        <div className="flex justify-around items-center p-4">
+      <section className="bg-[#1F4B43] w-full mx-auto my-0 font-display p-4">
+        <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 p-4 max-w-7xl mx-auto">
           <img
-            className="w-[180px] bg-white rounded-full"
+            className="w-[100px] bg-white rounded-full flex-shrink-0"
             src={feetathome}
             alt="feelathomeLogo"
           />
-          <div className="flex justify-between items-center gap-5">
+          <div className="flex flex-wrap justify-center sm:justify-start items-center gap-3 w-full sm:w-auto">
             <input
-              className="w-[500px] rounded-2xl p-2.5 bg-white"
+              className="w-full sm:w-auto max-w-xs md:max-w-md rounded-2xl p-2.5 bg-white text-gray-700 placeholder-gray-500 flex-grow"
               placeholder="Subscribe"
             />
-            <button className="bg-[#E7C873] p-2.5 px-4 rounded-2xl text-white font=roboto">
+            <button className="bg-[#E7C873] p-2.5 px-4 rounded-2xl text-white font-roboto font-bold hover:bg-opacity-90 transition duration-300 flex-shrink-0">
               Send
             </button>
           </div>
         </div>
-        <hr className="w-full text-white" />
-        <div className="flex justify-around items-center py-5">
-          <div className="flex flex-col gap-2">
-            <h2 className="font-bold text-2xl text-white">Follow Us</h2>
-            <div className="flex justify-center items-center gap-2">
-              <img src={facebooklogo} alt="facebooklogo" />
-              <img src={IGlogo} alt="Instagram logo" />
-              <img src={Linkedinlogo} alt="LinkedinLogo" />
+        <hr className="w-full text-white border-t border-white/20 my-4 max-w-7xl mx-auto" />
+        <div className="flex flex-wrap justify-around items-start gap-4 py-5 max-w-7xl mx-auto text-white">
+          <div className="flex flex-col sm:flex-row gap-8 min-w-[280px]">
+            <div>
+              <h2 className="font-bold text-2xl text-white mb-4">Follow Us</h2>
+              <div className="flex flex-row sm:flex-col gap-2">
+                <img
+                  className="w-10 sm:w-[60px]"
+                  src={facebooklogo}
+                  alt="facebooklogo"
+                />
+                <img
+                  className="w-10 sm:w-[60px]"
+                  src={IGlogo}
+                  alt="Instagram logo"
+                />
+                <img
+                  className="w-10 sm:w-[60px]"
+                  src={Linkedinlogo}
+                  alt="LinkedinLogo"
+                />
+              </div>
             </div>
+            <ul className="text-white">
+              <li className="font-bold mb-5 text-xl">Discover</li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Lagos
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">Oyo</li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Abuja
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Ilorin
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Ekiti
+              </li>
+            </ul>
           </div>
-          <ul className="text-white">
-            <li className="font-bold mb-5">Discover</li>
-            <li className="mt-5">Lagos</li>
-            <li>Oyo</li>
-            <li>Abuja</li>
-            <li>Ilorin</li>
-            <li>Ekiti</li>
-          </ul>
-          <ul className="text-white">
-            <li className="font-bold mb-5">Quick Links</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>FAQ's</li>
-            <li>Blog</li>
-            <li>Pricing Plan</li>
-            <li>Privacy Policy</li>
-            <li>Terms And Condition</li>
-            <li></li>
-          </ul>
-          <ul className="text-white">
-            <li className="font-bold mb-5">Quick Links</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>FAQ's</li>
-            <li>Blog</li>
-            <li>Pricing Plan</li>
-            <li>Privacy Policy</li>
-            <li>Terms And Condition</li>
-            <li></li>
-          </ul>
+          <div className="flex gap-4 sm:gap-8 min-w-[300px] justify-between">
+            <ul className="text-white text-sm">
+              <li className="font-bold mb-4 text-xl">Quick Links</li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                About
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Contact
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                FAQ's
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">Blog</li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Pricing Plan
+              </li>
+            </ul>
+
+            <ul className="text-white text-sm">
+              <li className="font-bold mb-4 text-xl invisible">Placeholder</li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Privacy Policy
+              </li>
+              <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
+                Terms And Condition
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </>

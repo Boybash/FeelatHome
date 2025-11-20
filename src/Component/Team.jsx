@@ -53,7 +53,7 @@ const Team = () => {
         <p>Learn about the popular real estate market around</p>
       </div>
       <div className="mx-auto  text-center">
-        <ul className="flex justify-center items-center gap-3">
+        <ul className="flex flex-wrap justify-center items-center gap-3">
           <li className="rounded-4xl border-solid border-2 border-[#1F4B43] bg-white py-2.5 px-4 cursor-pointer ">
             The Villages, FL real estate
           </li>

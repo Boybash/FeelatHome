@@ -1,0 +1,45 @@
+type User @table {
+  username: String!
+  email: String!
+  passwordHash: String!
+  createdAt: Timestamp!
+  firstName: String
+  lastName: String
+  bio: String
+  preferredLocation: String
+  age: Int
+  occupation: String
+  profilePictureUrl: String
+}
+
+type RoomListing @table {
+  user: User
+  title: String!
+  description: String!
+  rent: Float!
+  address: String!
+  city: String!
+  state: String!
+  zipCode: String!
+  createdAt: Timestamp!
+  numberOfBedrooms: Int
+  numberOfBathrooms: Float
+  amenities: [String]
+  availableFromDate: Date
+  photos: [String]
+}
+
+type Message @table {
+  sender: User!
+  receiver: User!
+  content: String!
+  sentAt: Timestamp!
+  readAt: Timestamp
+}
+
+type Favorite @table(key: ["user", "favoritedItemId", "favoritedItemType"]) {
+  user: User!
+  favoritedItemId: UUID!
+  favoritedItemType: String!
+  createdAt: Timestamp
+}
