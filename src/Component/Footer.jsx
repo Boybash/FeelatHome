@@ -6,7 +6,10 @@ import Linkedinlogo from "../assets/WHITE LINKEDIN.png";
 const Footer = () => {
   return (
     <>
-      <section className="bg-[#1F4B43] w-full mx-auto my-0 font-display p-4">
+      <section
+        id="contact"
+        className="bg-[#1F4B43] w-full mx-auto my-0 font-display p-4"
+      >
         <div className="flex flex-wrap justify-center lg:justify-between items-center gap-6 p-4 max-w-7xl mx-auto">
           <img
             className="w-[100px] bg-white rounded-full flex-shrink-0"

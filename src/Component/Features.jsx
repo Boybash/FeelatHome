@@ -9,7 +9,14 @@ import icon7 from "../assets/Icon 7.png";
 import icon8 from "../assets/Icon 8.png";
 import icon9 from "../assets/Icon 9.png";
 import arrow from "../assets/arrow.png";
+import { useContext } from "react";
+import { SearchContext } from "./SearchContext";
+import { useEffect } from "react";
+import { useState } from "react";
 const Features = () => {
+  const { searchTerm } = useContext(SearchContext);
+  let [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
   const properties = [
     {
       id: 1,
@@ -96,8 +103,39 @@ const Features = () => {
       status: "For Rent",
     },
   ];
+
+  const searchFilteredProperty = properties.filter((property) => {
+    const propertyData =
+      `${property.title} ${property.Author} ${property.typeoflisting} ${property.propertytype} ${property.location}`.toLowerCase();
+    return propertyData.includes(searchTerm.toLowerCase());
+  });
+
+  const itemsToPaginate = searchTerm ? searchFilteredProperty : properties;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = itemsToPaginate.slice(indexOfFirstItem, indexOfLastItem);
+
+  function handleNextPage() {
+    if (currentPage < Math.ceil(itemsToPaginate.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  function handlePreviousPage() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
   return (
-    <section className="bg-[#F7F7F7] mx-auto py-5 w-full font-display">
+    <section
+      id="featured"
+      className="bg-[#F7F7F7] mx-auto py-5 w-full font-display"
+    >
       <div className="mx-auto text-center my-0">
         <h2 className="my-1 font-bold text-3xl">Featured Properties</h2>
         <p>Check out all the properties available</p>
@@ -115,7 +153,7 @@ const Features = () => {
       </ul>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center mx-auto max-w-7xl w-full my-10 px-4">
-        {properties.map((property) => (
+        {currentItems.map((property) => (
           <div
             key={property.id}
             className="relative cursor-pointer w-full max-w-sm shadow-lg rounded-xl overflow-hidden transition duration-300 hover:shadow-xl"
@@ -176,9 +214,27 @@ const Features = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center gap-1 mb-10 bg-[#E7C873] py-2 px-4 w-[200px] mx-auto rounded-4xl cursor-pointer">
-        <button>See All Listing</button>
-        <img src={arrow} alt="arrow" />
+      <div className="flex justify-center flex-wrap gap-5 mx-auto items-center mt-5">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={` mb-10 bg-[#E7C873] py-2 px-4 w-50 rounded-4xl cursor-pointer ${
+            currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={indexOfLastItem >= itemsToPaginate.length}
+          className={`mb-10 bg-[#E7C873] py-2 px-4 w-50 rounded-4xl cursor-pointer ${
+            indexOfLastItem >= itemsToPaginate.length
+              ? "opacity-50 cursor-not-allowed"
+              : ""
+          }`}
+        >
+          Next
+        </button>
       </div>
     </section>
   );

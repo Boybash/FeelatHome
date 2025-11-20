@@ -15,6 +15,23 @@ const Navbar = () => {
   const [userStatus, setUserStatus] = useState(null);
   const [displayClass, setDisplayClas] = useState("");
 
+  const scrollToListing = () => {
+    const aboutSection = document.getElementById("listing");
+    aboutSection.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToFeatured = () => {
+    const skillsSection = document.getElementById("featured");
+    skillsSection.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToProperties = () => {
+    const portFolioSection = document.getElementById("properties");
+    portFolioSection.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    contactSection.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setIsLoggedIn(user !== null);
@@ -29,8 +46,7 @@ const Navbar = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const userData = docSnap.data();
-          setUserStatus(userData.status === "LANDLORD");
-          setUserStatus(userData.status === "TENANT");
+          setUserStatus(userData.status);
         }
       }
     });
@@ -69,7 +85,11 @@ const Navbar = () => {
             alt="Feelathome"
           />
           <button
-            onClick={!userStatus ? "" : handleAddproperty}
+            onClick={
+              userStatus === "LANDLORD" || userStatus === "TENANT"
+                ? handleAddproperty
+                : null
+            }
             className="rounded-4xl py-1.5 px-4 border-2 border-solid border-[#1F4B43] cursor-pointer max-[550px]:hidden"
           >
             Add Property
@@ -84,10 +104,18 @@ const Navbar = () => {
             <li className="cursor-pointer" onClick={handleHomeClick}>
               Home
             </li>
-            <li>Listings</li>
-            <li>Features</li>
-            <li>Properties</li>
-            <li>Contact</li>
+            <li onClick={scrollToListing} className="cursor-pointer">
+              Listings
+            </li>
+            <li onClick={scrollToFeatured} className="cursor-pointer">
+              Featured
+            </li>
+            <li onClick={scrollToProperties} className="cursor-pointer">
+              Properties
+            </li>
+            <li onClick={scrollToContact} className="cursor-pointer">
+              Contact
+            </li>
           </ul>
         </div>
         <div className="flex justify-center items-center gap-2 px-3 ">

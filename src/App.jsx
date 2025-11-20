@@ -12,27 +12,30 @@ import PropertyDetails from "./Component/PropertyDetails";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ProfileCheck from "./Component/ProfileCheck";
+import { SearchProvider } from "./Component/SearchContext";
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/registration" element={<Registration />}></Route>
-          <Route path="/signin" element={<Signin />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/listform" element={<ListForm />}></Route>
-          <Route
-            path="/propertydetails/:propertyId"
-            element={<PropertyDetails />}
-          ></Route>
-          <Route
-            path="/creatorprofile/:creatorId"
-            element={<ProfileCheck />}
-          ></Route>
-        </Routes>
-        <Footer />
+        <SearchProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/registration" element={<Registration />}></Route>
+            <Route path="/signin" element={<Signin />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/listform" element={<ListForm />}></Route>
+            <Route
+              path="/propertydetails/:propertyId"
+              element={<PropertyDetails />}
+            ></Route>
+            <Route
+              path="/creatorprofile/:creatorId"
+              element={<ProfileCheck />}
+            ></Route>
+          </Routes>
+          <Footer />
+        </SearchProvider>
       </BrowserRouter>
     </>
   );

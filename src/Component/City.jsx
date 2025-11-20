@@ -42,7 +42,10 @@ const City = () => {
   ];
   return (
     <>
-      <section className="bg-[#F7F7F7] w-full p-3 md:p-10 lg:p-10 mx-auto font-display">
+      <section
+        id="properties"
+        className="bg-[#F7F7F7] w-full p-3 md:p-10 lg:p-10 mx-auto font-display"
+      >
         <div>
           <h2 className="text-3xl text-center font-bold">
             Find Properties in These Cities
@@ -69,32 +72,26 @@ const City = () => {
         </div>
 
         <div className="mx-auto flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center mt-10 max-w-6xl bg-white p-4 md:p-10 gap-10 rounded-xl">
-          {/* 1. Responsive Image Gallery (Flexes to occupy available space) */}
           <div className="relative w-full max-w-xl">
-            {/* CSS Grid for Image Layout (4 total slots: 2x2 grid) */}
             <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[400px] md:h-[500px]">
-              {/* House 1: Top Left - Spans 1 row, 1 column */}
               <img
                 className="w-full h-full object-cover rounded-xl col-span-1 row-span-1"
                 src={house1}
                 alt="house1"
               />
 
-              {/* House 2: Top Right - Spans 1 column, 1 row */}
               <img
                 className="w-full h-full object-cover rounded-xl col-span-1 row-span-1"
                 src={house2}
                 alt="house2"
               />
 
-              {/* House 3: Bottom Left - Spans 1 column, 1 row */}
               <img
                 className="w-full h-full object-cover rounded-xl col-span-1 row-span-1"
                 src={house3}
                 alt="house3"
               />
 
-              {/* Stats Card (Bottom Right - Occupies the final grid slot) */}
               <div className="bg-white rounded-2xl p-3 flex items-center gap-2 w-full h-full justify-center shadow-lg">
                 <img
                   className="w-8 h-8 md:w-10 md:h-10 bg-green-200 rounded-full p-2 object-contain"
@@ -111,13 +108,11 @@ const City = () => {
             </div>
           </div>
 
-          {/* 2. Text Content & Steps (Full width on mobile, side-by-side on large) */}
           <div className="w-full max-w-md lg:w-auto mt-10 lg:mt-0">
             <h2 className="font-bold text-3xl mb-4 leading-snug">
               How it Works? <br /> **Find Perfect Home**
             </h2>
 
-            {/* Step 1 */}
             <div className="flex items-center gap-4 mt-6">
               <img
                 className="w-10 h-10 bg-yellow-400 p-2 rounded-full object-contain"
@@ -127,7 +122,6 @@ const City = () => {
               <h3 className="text-base font-semibold">Find Real Estate</h3>
             </div>
 
-            {/* Step 2 */}
             <div className="flex items-center gap-4 mt-4">
               <img
                 className="w-10 h-10 bg-yellow-400 p-2 rounded-full object-contain"
@@ -137,7 +131,6 @@ const City = () => {
               <h3 className="text-base font-semibold">Meet Realtor</h3>
             </div>
 
-            {/* Step 3 */}
             <div className="flex items-center gap-4 mt-4">
               <img
                 className="w-10 h-10 bg-yellow-400 p-2 rounded-full object-contain"
