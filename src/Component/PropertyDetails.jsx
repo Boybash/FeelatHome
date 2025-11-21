@@ -120,7 +120,7 @@ const PropertyDetails = () => {
               </div>
 
               <div className="flex flex-col gap-3">
-                <h2 className="bg-[#1F4B43] p-2 px-4 text-sm rounded-full uppercase text-white text-center">
+                <h2 className="bg-[#1F4B43] p-2 px-4 text-sm rounded-full uppercase text-white text-center w-50">
                   {propertyDetails.status}
                 </h2>
                 <button
