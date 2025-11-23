@@ -14,7 +14,7 @@ import house4 from "../assets/house 4.jpg";
 import house5 from "../assets/house 5.jpg";
 import house6 from "../assets/house 6.jpg";
 import whitearrow from "../assets/white arrow.png";
-import locationicon from "../assets/icon 9.png";
+import locationicon from "../assets/Icon 9.png";
 import bedicon from "../assets/icon 7.png";
 import toileticon from "../assets/icon 8.png";
 import { Slide, Fade } from "react-awesome-reveal";
