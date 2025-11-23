@@ -117,7 +117,7 @@ const ListForm = () => {
           onSubmit={handleListProperty}
           className="flex flex-col lg:flex-row justify-center items-stretch w-full max-w-6xl mx-auto p-4"
         >
-          <div className="bg-[#1F4B43] flex flex-col p-6 lg:p-10 rounded-4xl w-full lg:w-1/2 relative">
+          <div className="bg-[#1F4B43] flex flex-col p-6 lg:p-10 rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl w-full lg:w-1/2 relative">
             <select
               onChange={handleChange}
               name="typeoflisting"
@@ -210,6 +210,7 @@ const ListForm = () => {
                   <option value="Month">PER MONTH</option>
                   <option value="Week">PER WEEK</option>
                   <option value="Day">PER DAY</option>
+                  <option value="One Time">ONE TIME</option>
                 </select>
                 {errorMessages.duration && (
                   <p className="text-red-400 text-sm mt-1">
@@ -219,7 +220,7 @@ const ListForm = () => {
               </div>
             </div>
           </div>
-          <div className="bg-[#E7C873] flex flex-col p-6 lg:p-10 rounded-4xl w-full lg:w-1/2  lg:mt-0">
+          <div className="bg-[#E7C873] flex flex-col p-6 lg:p-10 rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl w-full lg:w-1/2  lg:mt-0">
             <input
               onChange={handleChange}
               className="w-full p-4 outline-0 bg-white rounded-2xl mt-5"
@@ -310,12 +311,6 @@ const ListForm = () => {
               <p className="text-green-600 font-bold text-2xl text-center">
                 Property Listed Successfully
               </p>
-              <img
-                onClick={handleCloseModal}
-                className="absolute top-2 right-2 w-10 cursor-pointer"
-                src={xicon}
-                alt="xicon"
-              />
             </div>
           </div>
         )}

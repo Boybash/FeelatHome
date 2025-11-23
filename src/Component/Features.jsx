@@ -17,6 +17,7 @@ import { Fade } from "react-awesome-reveal";
 const Features = () => {
   const { searchTerm } = useContext(SearchContext);
   let [currentPage, setCurrentPage] = useState(1);
+  const [activeFilter, setActiveFilter] = useState("All");
   const itemsPerPage = 6;
   const properties = [
     {
@@ -104,14 +105,20 @@ const Features = () => {
       status: "For Rent",
     },
   ];
+  const typeFilteredProperties = properties.filter((property) => {
+    if (activeFilter === "All") {
+      return true;
+    }
+    return property.status === activeFilter;
+  });
 
-  const searchFilteredProperty = properties.filter((property) => {
+  const searchFilteredProperty = typeFilteredProperties.filter((property) => {
     const propertyData =
-      `${property.title} ${property.Author} ${property.typeoflisting} ${property.propertytype} ${property.location}`.toLowerCase();
+      `${property.title} ${property.Author} ${property.status} ${property.propertytype} ${property.location}`.toLowerCase();
     return propertyData.includes(searchTerm.toLowerCase());
   });
 
-  const itemsToPaginate = searchTerm ? searchFilteredProperty : properties;
+  const itemsToPaginate = searchFilteredProperty;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = itemsToPaginate.slice(indexOfFirstItem, indexOfLastItem);
@@ -128,9 +135,24 @@ const Features = () => {
     }
   }
 
+  function handleForSale() {
+    setActiveFilter("For Sale");
+    setCurrentPage(1);
+  }
+
+  function handleForRent() {
+    setActiveFilter("For Rent");
+    setCurrentPage(1);
+  }
+
+  function handleAllProperties() {
+    setActiveFilter("All");
+    setCurrentPage(1);
+  }
+
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [searchTerm, activeFilter]);
 
   return (
     <Fade>
@@ -143,13 +165,22 @@ const Features = () => {
           <p>Check out all the properties available</p>
         </div>
         <ul className="flex justify-center items-center gap-5 mx-auto my-5 max-[410px]:flex-col">
-          <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white">
+          <li
+            onClick={handleAllProperties}
+            className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white"
+          >
             All Properties
           </li>
-          <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white ">
+          <li
+            onClick={handleForSale}
+            className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white "
+          >
             For Sale
           </li>
-          <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 bg-[#1F4B43] text-white cursor-pointer">
+          <li
+            onClick={handleForRent}
+            className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 bg-[#1F4B43] text-white cursor-pointer"
+          >
             For Rent
           </li>
         </ul>
@@ -216,11 +247,11 @@ const Features = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center flex-wrap gap-5 mx-auto items-center mt-5">
+        <div className="flex justify-center flex-wrap gap-5 mx-auto items-center mt-5 max-[600px]:flex-col">
           <button
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
-            className={` mb-10 bg-[#E7C873] py-2 px-4 w-50 rounded-4xl cursor-pointer ${
+            className={` mb-10 bg-[#E7C873] py-2 px-4 w-50 rounded-4xl cursor-pointer max-[600px]:mb-2 ${
               currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >

@@ -86,7 +86,7 @@ const Navbar = () => {
           />
           <button
             onClick={
-              userStatus === "LANDLORD" || userStatus === "TENANT"
+              userStatus === "LANDLORD" || userStatus === "AGENT"
                 ? handleAddproperty
                 : null
             }
@@ -100,7 +100,7 @@ const Navbar = () => {
             displayClass === "active" ? "block" : "hidden"
           } min-[1050px]:block max-[1050px]:absolute top-15 right-0`}
         >
-          <ul className="flex justify-center items-center gap-10 font-display text-white text-lg max-[1050px]:flex max-[1050px]:flex-col max-[1050px]:p-10 max-[1050px]:bg-[#E7C873]">
+          <ul className=" font-bold flex justify-center items-center gap-10 font-display text-white text-lg max-[1050px]:flex max-[1050px]:flex-col max-[1050px]:p-10 max-[1050px]:bg-[#E7C873]">
             <li className="cursor-pointer" onClick={handleHomeClick}>
               Home
             </li>

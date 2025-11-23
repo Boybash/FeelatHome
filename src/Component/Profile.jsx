@@ -53,7 +53,7 @@ const Profile = () => {
       <section className="bg-[#F7F7F7] mx-auto p-20 w-full flex flex-col gap-10 font-display max-[500px]:px-5">
         {userDetails ? (
           <div className="flex flex-col lg:flex-row justify-center items-stretch w-full max-w-screen-xl mx-auto p-4 ">
-            <div className="bg-[#E7C873] flex flex-col items-center justify-center gap-4 p-8 rounded-4xl w-full lg:w-1/2 min-h-[300px]">
+            <div className="bg-[#E7C873] flex flex-col items-center justify-center gap-4 p-8 rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl w-full lg:w-1/2 min-h-[300px]">
               <img
                 className="w-full max-w-[250px] rounded-4xl h-auto object-cover"
                 src={userDetails.image}
@@ -61,7 +61,7 @@ const Profile = () => {
               />
             </div>
 
-            <div className="bg-[#1F4B43] text-white text-base lg:text-lg flex flex-col gap-3 lg:gap-5 justify-center items-start p-8 rounded-4xl w-full lg:w-1/2 min-h-[300px]">
+            <div className="bg-[#1F4B43] text-white text-base lg:text-lg flex flex-col gap-3 lg:gap-5 justify-center items-start p-8 rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl w-full lg:w-1/2 min-h-[300px]">
               <h2 className="text-center w-full">
                 Fullname: {userDetails.fullname}
               </h2>

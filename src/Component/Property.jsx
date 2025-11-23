@@ -20,10 +20,11 @@ import {
   updateDoc,
 } from "firebase/firestore";
 const Property = () => {
-  const [propertyListed, setPropertyListed] = useState([]);
-  const navigate = useNavigate();
   const { searchTerm } = useContext(SearchContext);
   let [currentPage, setCurrentPage] = useState(1);
+  const [allProperties, setAllProperties] = useState([]);
+  const [activeFilter, setActiveFilter] = useState("All");
+  const navigate = useNavigate();
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -33,20 +34,25 @@ const Property = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      setPropertyListed(propertyData);
+      setAllProperties(propertyData);
     };
     fetchProperty();
   }, []);
 
-  const searchFilteredProperties = propertyListed.filter((property) => {
+  const typeFilteredProperties = allProperties.filter((property) => {
+    if (activeFilter === "All") {
+      return true;
+    }
+    return property.typeoflisting === activeFilter;
+  });
+
+  const searchFilteredProperties = typeFilteredProperties.filter((property) => {
     const propertyData =
       `${property.title} ${property.Author} ${property.typeoflisting} ${property.propertytype} ${property.city} ${property.state}`.toLowerCase();
     return propertyData.includes(searchTerm.toLowerCase());
   });
 
-  const itemsToPaginate = searchTerm
-    ? searchFilteredProperties
-    : propertyListed;
+  const itemsToPaginate = searchFilteredProperties;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = itemsToPaginate.slice(indexOfFirstItem, indexOfLastItem);
@@ -65,10 +71,25 @@ const Property = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [searchTerm, activeFilter]);
 
   function handlePropertyDetails(propertyId) {
     navigate(`/propertydetails/${propertyId}`);
+  }
+
+  function handleForSale() {
+    setActiveFilter("For Sale");
+    setCurrentPage(1);
+  }
+
+  function handleForRent() {
+    setActiveFilter("For Rent");
+    setCurrentPage(1);
+  }
+
+  function handleAllProperties() {
+    setActiveFilter("All");
+    setCurrentPage(1);
   }
 
   return (
@@ -83,13 +104,22 @@ const Property = () => {
             <p>Check out all the Listed properties available</p>
           </div>
           <ul className="flex justify-center items-center gap-5 mx-auto my-5 max-[410px]:flex-col">
-            <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white">
+            <li
+              onClick={handleAllProperties}
+              className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white"
+            >
               All Properties
             </li>
-            <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white ">
+            <li
+              onClick={handleForSale}
+              className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 cursor-pointer bg-[#1F4B43] text-white "
+            >
               For Sale
             </li>
-            <li className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 bg-[#1F4B43] text-white cursor-pointer">
+            <li
+              onClick={handleForRent}
+              className="rounded-4xl border-2 border-solid border-[#1F4B43] py-2 px-4 bg-[#1F4B43] text-white cursor-pointer"
+            >
               For Rent
             </li>
           </ul>
@@ -175,11 +205,11 @@ const Property = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-wrap gap-5 mt-5">
+          <div className="flex flex-wrap gap-5 mt-5 max-[600px]:flex-col">
             <button
               onClick={handlePreviousPage}
               disabled={currentPage === 1}
-              className={`flex justify-center items-center gap-1 mb-10 bg-[#E7C873] py-2 px-4 w-[200px] mx-auto rounded-4xl cursor-pointer ${
+              className={`flex justify-center items-center gap-1 mb-10 bg-[#E7C873] py-2 px-4 w-[200px] mx-auto rounded-4xl cursor-pointer max-[600px]:mb-2 ${
                 currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >

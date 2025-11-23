@@ -18,7 +18,7 @@ import { useLocation } from "react-router-dom";
 const Signin = () => {
   const [showPasword, setShowPassword] = useState(false);
   const [errorMessages, setErrorMessages] = useState({});
-  const [loginSubmissionStatus, setLoginSubmissionStatus] = useState("");
+  const [loginSubmissionStatus, setLoginSubmissionStatus] = useState(null);
   const [closeModal, setCloseModal] = useState("");
   const [loginFormData, setLoginFormData] = useState({
     email: "",
@@ -74,6 +74,7 @@ const Signin = () => {
         setErrorMessages({ general: err.message });
       }
       setLoginSubmissionStatus(false);
+      resetForm();
     }
   }
 
@@ -90,7 +91,7 @@ const Signin = () => {
     <>
       <section className="bg-[#F7F7F7] mx-auto p-20 w-full flex flex-col gap-10 font-display max-[600px]:px-5">
         <div className="flex justify-center items-center max-[800px]:flex-col">
-          <div className=" bg-[#E7C873] flex flex-col gap-2  p-10 rounded-4xl w-full h-[450px]">
+          <div className=" bg-[#E7C873] flex flex-col gap-2  p-10 rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl w-full lg:w-1/2 h-[450px]">
             <h1 className="text-white text-center text-3xl font-bold mb-2">
               Sign In
             </h1>
@@ -141,7 +142,7 @@ const Signin = () => {
               </div>
             </form>
           </div>
-          <div className="bg-[#1F4B43] text-white flex flex-col gap-10 justify-center items-center p-10 rounded-4xl w-full h-[450px]">
+          <div className="bg-[#1F4B43] text-white flex flex-col gap-10 justify-center items-center p-10 rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl w-full lg:w-1/2 h-[450px]">
             <h1 className="font-bold text-4xl"> Hello, Friend!</h1>
             <p className="font-display">
               {" "}
@@ -155,30 +156,54 @@ const Signin = () => {
               SIGN UP
             </button>
           </div>
-          {loginSubmissionStatus && (
-            <div
-              className={`${
-                closeModal === "closemodal" ? "hidden" : ""
-              }bg-[#00000090] fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center`}
-            >
+          {loginSubmissionStatus !== null &&
+            (loginSubmissionStatus ? (
               <div
                 className={`${
                   closeModal === "closemodal" ? "hidden" : ""
-                } bg-[#E7C873] flex flex-col gap-5 justify-center items-center p-10 rounded-4xl w-[400px] relative max-[410px]:w-[300px]`}
+                }bg-[#00000090] fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center`}
               >
-                <img src={feelathomeLogo} alt="feelathomeLogo" />
-                <p className="text-green-600 font-bold text-2xl">
-                  Welcome Back!
-                </p>
-                <img
-                  onClick={handleCloseModal}
-                  className="absolute top-2 right-2 w-10 cursor-pointer"
-                  src={xicon}
-                  alt="xicon"
-                />
+                <div
+                  className={`${
+                    closeModal === "closemodal" ? "hidden" : ""
+                  } bg-[#E7C873] flex flex-col gap-5 justify-center items-center p-10 rounded-4xl w-[400px] relative max-[410px]:w-[300px]`}
+                >
+                  <img src={feelathomeLogo} alt="feelathomeLogo" />
+                  <p className="text-green-600 font-bold text-2xl">
+                    Welcome Back!
+                  </p>
+                  <img
+                    onClick={handleCloseModal}
+                    className="absolute top-2 right-2 w-10 cursor-pointer"
+                    src={xicon}
+                    alt="xicon"
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            ) : (
+              <div
+                className={`${
+                  closeModal === "closemodal" ? "hidden" : ""
+                }bg-[#00000090] fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center`}
+              >
+                <div
+                  className={`${
+                    closeModal === "closemodal" ? "hidden" : ""
+                  } bg-[#E7C873] flex flex-col gap-5 justify-center items-center p-10 rounded-4xl w-[400px] relative max-[410px]:w-[300px]`}
+                >
+                  <img src={feelathomeLogo} alt="feelathomeLogo" />
+                  <p className="text-red-600 font-bold text-2xl">
+                    User Not Found
+                  </p>
+                  <img
+                    onClick={handleCloseModal}
+                    className="absolute top-2 right-2 w-10 cursor-pointer"
+                    src={xicon}
+                    alt="xicon"
+                  />
+                </div>
+              </div>
+            ))}
         </div>
       </section>
     </>

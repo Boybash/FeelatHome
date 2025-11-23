@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { dataBase } from "../../Firebase";
-import { auth } from "../../Firebase";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { dataBase, auth } from "../../Firebase";
+import { doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import icon7 from "../assets/Icon 7.png";
 import icon8 from "../assets/Icon 8.png";
 import feelathomeLogo from "../assets/feelathome.png";
 import xicon from "../assets/xicon.png";
-import icon9 from "../assets/Icon 9.png";
+
 const PropertyDetails = () => {
   const { propertyId } = useParams();
   const [propertyDetails, setPropertyDetails] = useState(null);
   const [closeModal, setCloseModal] = useState("");
-  const [booking, setBooking] = useState("");
-  const [isVerify, setIsVerifying] = useState("");
+  const [booking, setBooking] = useState(false);
+  const [isVerify, setIsVerifying] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isloggedIn, setIsLoggedIn] = useState(null);
+  const [updatedProperyDetails, setUpdatedPropertyDetails] = useState({});
+  const [currentUserId, setCurrentUserId] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,11 +25,25 @@ const PropertyDetails = () => {
   }, [location]);
 
   useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(user !== null);
+    });
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      setCurrentUserId(user.uid);
+    }
+
     const fetchPropertyDetails = async () => {
       const docRef = doc(dataBase, "listing", propertyId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        setPropertyDetails(docSnap.data());
+        const data = docSnap.data();
+        setPropertyDetails(data);
+        setUpdatedPropertyDetails(data);
       } else {
         console.warn("No such post found for ID:", propertyId);
         setPropertyDetails(null);
@@ -37,6 +51,34 @@ const PropertyDetails = () => {
     };
     fetchPropertyDetails();
   }, [propertyId]);
+
+  const handleToggleEdit = () => {
+    setIsEditing(!isEditing);
+    if (!isEditing && propertyDetails) {
+      setUpdatedPropertyDetails(propertyDetails);
+    }
+  };
+
+  const handleChange = (e) => {
+    setUpdatedPropertyDetails({
+      ...updatedProperyDetails,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleEditPost = async (e) => {
+    e.preventDefault();
+    try {
+      await updateDoc(
+        doc(dataBase, "listing", propertyId),
+        updatedProperyDetails
+      );
+      setPropertyDetails(updatedProperyDetails);
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  };
 
   function handleCloseModal() {
     setCloseModal(true);
@@ -58,77 +100,189 @@ const PropertyDetails = () => {
     navigate(`/creatorprofile/${creatorId}`);
   }
 
+  const isCreator =
+    currentUserId &&
+    propertyDetails &&
+    currentUserId === propertyDetails.creatorId;
+
   return (
     <>
       <section className="bg-[#F7F7F7] mx-auto p-20 w-full flex flex-col gap-10 font-display max-[550px]:px-5">
         {!propertyDetails ? (
           <p>Loading...</p>
         ) : (
-          <div className="flex flex-col md:flex-row items-center justify-center max-w-4xl mx-auto my-8 shadow-2xl rounded-xl">
-            <div className="relative w-full md:w-1/2">
-              <img
-                className="w-full min-h-[600px] h-auto object-cover rounded-t-xl md:rounded-tr-none md:rounded-l-xl md:h-full"
-                src={propertyDetails.images}
-                alt="propertyImage"
-              />
-              <div className="flex gap-2 my-2 absolute top-2 left-2">
-                <h1 className="bg-[#1F4B43] p-2 px-4 text-xs md:text-sm rounded-full uppercase text-white">
-                  {propertyDetails.typeoflisting}
-                </h1>
-                <h1 className="bg-[#E7C873] p-2 px-4 text-xs md:text-sm rounded-full uppercase text-black">
-                  {propertyDetails.propertytype}
-                </h1>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 min-h-[600px] bg-[#E7C873] flex flex-col gap-2 p-5 rounded-b-xl md:rounded-bl-none md:rounded-r-xl">
-              <h1 className="text-xl font-bold mb-2">
-                {propertyDetails.title}
-              </h1>
-              <h1 className="text-sm">
-                <span className="font-semibold">Description:</span>{" "}
-                {propertyDetails.description}
-              </h1>
-              <h1 className="text-sm">
-                <span className="font-semibold">City:</span>{" "}
-                {propertyDetails.city}
-              </h1>
-              <h1 className="text-sm">
-                <span className="font-semibold">State:</span>{" "}
-                {propertyDetails.state}
-              </h1>
-              <h1 className="text-sm">
-                <span className="font-semibold">Location:</span>{" "}
-                {propertyDetails.location}
-              </h1>
-              <h1 className="text-lg font-extrabold text-[#EB664E]">
-                #{propertyDetails.price}/{propertyDetails.duration}
-              </h1>
-
-              <div className="flex gap-4">
-                <div className="flex items-center gap-1 text-xs">
-                  <img src={icon7} className="w-4 h-4" alt="Bedroom Icon" />
-                  <span className="text-sm">
-                    {propertyDetails.bedroom} Rooms
-                  </span>
-                </div>
-                <div className="flex items-center gap-1 text-xs">
-                  <img src={icon8} className="w-4 h-4" alt="Toilet Icon" />
-                  <span className="text-sm">
-                    {propertyDetails.toilet} Toilets
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                <h2 className="bg-[#1F4B43] p-2 px-4 text-sm rounded-full uppercase text-white text-center w-50">
-                  {propertyDetails.status}
-                </h2>
+          <div className="flex flex-col gap-5 max-w-4xl mx-auto my-8 w-full">
+            {isCreator && (
+              <div className="flex justify-center">
                 <button
-                  onClick={handleShowModal}
-                  className="font-bold border-4 border-[#1F4B43] p-3 rounded-xl w-full max-w-xs text-center text-[#1F4B43] hover:bg-[#1F4B43] hover:text-white transition duration-300 mx-auto cursor-pointer"
+                  onClick={handleToggleEdit}
+                  className={`font-bold border-4 p-3 rounded-xl w-48 transition duration-300 cursor-pointer ${
+                    isEditing
+                      ? "border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                      : "border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+                  }`}
                 >
-                  Book For Inspection
+                  {isEditing ? "Cancel Edit" : "Edit Property"}
                 </button>
+              </div>
+            )}
+
+            <div className="flex flex-col md:flex-row items-center justify-center shadow-2xl rounded-xl">
+              <div className="relative w-full md:w-1/2">
+                <img
+                  className="w-full min-h-[600px] h-auto object-cover rounded-t-xl md:rounded-tr-none md:rounded-l-xl md:h-full"
+                  src={propertyDetails.images}
+                  alt="propertyImage"
+                />
+                <div className="flex gap-2 my-2 absolute top-2 left-2">
+                  <h1 className="bg-[#1F4B43] p-2 px-4 text-xs md:text-sm rounded-full uppercase text-white">
+                    {propertyDetails.typeoflisting}
+                  </h1>
+                  <h1 className="bg-[#E7C873] p-2 px-4 text-xs md:text-sm rounded-full uppercase text-black">
+                    {propertyDetails.propertytype}
+                  </h1>
+                </div>
+              </div>
+
+              <div className="w-full md:w-1/2 min-h-[600px] bg-[#E7C873] flex flex-col gap-2 p-5 rounded-b-xl md:rounded-bl-none md:rounded-r-xl">
+                {isEditing && isCreator ? (
+                  <form
+                    onSubmit={handleEditPost}
+                    className="flex flex-col gap-4"
+                  >
+                    <input
+                      type="text"
+                      name="title"
+                      value={updatedProperyDetails.title || ""}
+                      onChange={handleChange}
+                      placeholder="Title"
+                      className="text-xl font-bold mb-2 p-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                    />
+                    <textarea
+                      name="description"
+                      value={updatedProperyDetails.description || ""}
+                      onChange={handleChange}
+                      placeholder="Description"
+                      rows="4"
+                      className="text-sm p-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                    />
+                    <input
+                      type="text"
+                      name="city"
+                      value={updatedProperyDetails.city || ""}
+                      onChange={handleChange}
+                      placeholder="City"
+                      className="text-sm p-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                    />
+                    <input
+                      type="text"
+                      name="state"
+                      value={updatedProperyDetails.state || ""}
+                      onChange={handleChange}
+                      placeholder="State"
+                      className="text-sm p-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                    />
+                    <input
+                      type="text"
+                      name="location"
+                      value={updatedProperyDetails.location || ""}
+                      onChange={handleChange}
+                      placeholder="Location"
+                      className="text-sm p-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                    />
+                    <div className="flex gap-2">
+                      <span className="text-lg font-bold">#</span>
+                      <input
+                        type="number"
+                        name="price"
+                        value={updatedProperyDetails.price || ""}
+                        onChange={handleChange}
+                        placeholder="Price"
+                        className="text-lg font-extrabold text-[#EB664E] p-2 border border-gray-400 rounded-lg w-1/2 focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                      />
+                      <input
+                        type="text"
+                        name="duration"
+                        value={updatedProperyDetails.duration || ""}
+                        onChange={handleChange}
+                        placeholder="/Duration"
+                        className="text-lg font-extrabold text-[#EB664E] p-2 border border-gray-400 rounded-lg w-1/2 focus:outline-none focus:ring-2 focus:ring-[#1F4B43]"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="font-bold mt-5 border-4 border-[#1F4B43] p-3 rounded-xl w-full text-center text-[#1F4B43] bg-white hover:bg-[#1F4B43] hover:text-white transition duration-300"
+                    >
+                      Save Changes
+                    </button>
+                  </form>
+                ) : (
+                  <>
+                    <h1 className="text-xl font-bold mb-2">
+                      {propertyDetails.title}
+                    </h1>
+                    <h1 className="text-sm">
+                      <span className="font-semibold">Description:</span>{" "}
+                      {propertyDetails.description}
+                    </h1>
+                    <h1 className="text-sm">
+                      <span className="font-semibold">City:</span>{" "}
+                      {propertyDetails.city}
+                    </h1>
+                    <h1 className="text-sm">
+                      <span className="font-semibold">State:</span>{" "}
+                      {propertyDetails.state}
+                    </h1>
+                    <h1 className="text-sm">
+                      <span className="font-semibold">Location:</span>{" "}
+                      {propertyDetails.location}
+                    </h1>
+                    <h1 className="text-lg font-extrabold text-[#EB664E]">
+                      #{propertyDetails.price}/{propertyDetails.duration}
+                    </h1>
+
+                    <div className="flex gap-4">
+                      <div className="flex items-center gap-1 text-xs">
+                        <img
+                          src={icon7}
+                          className="w-4 h-4"
+                          alt="Bedroom Icon"
+                        />
+                        <span className="text-sm">
+                          {propertyDetails.bedroom} Rooms
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1 text-xs">
+                        <img
+                          src={icon8}
+                          className="w-4 h-4"
+                          alt="Toilet Icon"
+                        />
+                        <span className="text-sm">
+                          {propertyDetails.toilet} Toilets
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      <h2 className="bg-[#1F4B43] p-2 px-4 text-sm rounded-full uppercase text-white text-center w-50">
+                        {propertyDetails.status}
+                      </h2>
+                      <button
+                        disabled={!isloggedIn}
+                        onClick={handleShowModal}
+                        className={` ${
+                          !isloggedIn
+                            ? "opacity-50 cursor-not-allowed"
+                            : "block"
+                        } font-bold mt-10 border-4 border-[#1F4B43] p-3 rounded-xl w-full max-w-xs text-center text-[#1F4B43] hover:bg-[#1F4B43] hover:text-white transition duration-300 mx-auto cursor-pointer`}
+                      >
+                        Book For Inspection
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -165,7 +319,7 @@ const PropertyDetails = () => {
                 </div>
                 <button
                   onClick={handleVerification}
-                  className="mb-4 font-bold border-4 border-[#1F4B43] p-2.5 rounded-2xl w-50 text-center text-white mx-auto cursor-pointer mt-2"
+                  className="mb-4 font-bold border-4 border-[#1F4B43] p-2.5 rounded-2xl w-50 text-center text-white mx-auto cursor-pointer mt-2 hover:bg-[#1F4B43] hover:text-white transition duration-300"
                 >
                   Paid
                 </button>
@@ -204,7 +358,7 @@ const PropertyDetails = () => {
                   onClick={() => {
                     handleProfileCheck(propertyDetails.creatorId);
                   }}
-                  className="mb-4 font-bold border-4 border-[#1F4B43] p-2.5 rounded-2xl w-50 text-center text-white mx-auto cursor-pointer mt-2"
+                  className="mb-4 font-bold border-4 border-[#1F4B43] p-2.5 rounded-2xl w-50 text-center text-white mx-auto cursor-pointer mt-2 hover:bg-[#1F4B43] hover:text-white transition duration-300"
                 >
                   Make Contact
                 </button>
