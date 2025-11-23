@@ -16,7 +16,7 @@ import house6 from "../assets/house 6.jpg";
 import whitearrow from "../assets/white arrow.png";
 import locationicon from "../assets/icon 9.png";
 import bedicon from "../assets/Icon 7.png";
-import toileticon from "../assets/icon 8.png";
+import toileticon from "../assets/Icon 8.png";
 import { Slide, Fade } from "react-awesome-reveal";
 
 const Testimonial = () => {
