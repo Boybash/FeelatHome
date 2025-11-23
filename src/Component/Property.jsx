@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase";
 import icon7 from "../assets/Icon 7.png";
 import icon8 from "../assets/Icon 8.png";
-import icon9 from "../assets/Icon 9.png";
+import icon9 from "../assets/icon 9.png";
 import arrow from "../assets/arrow.png";
 import whiteArrow from "../assets/white arrow.png";
 import { SearchContext } from "./SearchContext";
