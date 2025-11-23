@@ -37,7 +37,7 @@ const Introduction = () => {
 
         <Slide direction="bottom">
           <div className="flex flex-wrap justify-center items-center gap-10 mx-auto">
-            <div className="w-[300px] text-center my-3">
+            <div className="w-[350px] text-center my-3">
               <img className="mx-auto my-3" src={icon4} alt="icon4" />
               <h3 className="font-bold text-2xl mb-1">
                 Wide Range of Properties

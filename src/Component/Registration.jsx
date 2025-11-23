@@ -155,7 +155,7 @@ const Registration = () => {
             onSubmit={handleSignupFormSubmit}
             className="flex flex-col lg:flex-row justify-center items-stretch w-full max-w-5xl mx-auto p-4"
           >
-            <div className="bg-[#1F4B43] flex flex-col p-6 lg:p-10 rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl w-full lg:w-1/2 relative">
+            <div className="bg-[#1F4B43] flex flex-col p-6 lg:p-10 rounded-t-2xl rounded-b-none lg:rounded-l-2xl lg:rounded-r-none lg:rounded-t-2xl lg:rounded-b-2xl lg:rounded-br-none w-full lg:w-1/2 relative">
               <input
                 onChange={handleSignupFormChange}
                 className="w-full p-4 outline-0 bg-white rounded-2xl file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
@@ -241,7 +241,7 @@ const Registration = () => {
               </div>
             </div>
 
-            <div className=" bg-[#E7C873] flex flex-col p-6 lg:p-10 rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl w-full lg:w-1/2 lg:mt-0">
+            <div className=" bg-[#E7C873] flex flex-col p-6 lg:p-10 rounded-b-2xl rounded-t-none lg:rounded-r-2xl lg:rounded-l-none lg:rounded-t-2xl lg:rounded-br-2xl w-full lg:w-1/2 lg:mt-0">
               <input
                 onChange={handleSignupFormChange}
                 className="w-full p-4 outline-0 bg-white rounded-2xl"

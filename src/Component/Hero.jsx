@@ -25,7 +25,7 @@ const Hero = () => {
             <h1 className="uppercase font-bold text-4xl text-center mt-3 text-[#E7C873]">
               believe in finding it
             </h1>
-            <p className=" font-bold text-white max-[400px]:w-[250px] text-center">
+            <p className=" font-bold text-[#E7C873] max-[400px]:w-[250px] text-center">
               Search propreties for sales and to rent in Nigeria
             </p>
 
@@ -46,17 +46,23 @@ const Hero = () => {
             <div className="flex flex-wrap justify-center items-center gap-10 mt-5 max-[410px]:flex-col">
               <div className="flex justify-center items-center gap-2 rounded-4xl bg-[#00000090] bg-opacity-50% py-1.5 px-2.5">
                 <img src={icon1} alt="icon1" />
-                <span className="text-center text-white">Apartment</span>
+                <span className="text-center text-white font-bold">
+                  Apartment
+                </span>
               </div>
 
               <div className="flex justify-center items-center gap-2 rounded-4xl bg-[#00000090] py-1.5 px-2.5">
                 <img src={icon2} alt="icon2" />
-                <span className="text-center text-white">Condo Chill</span>
+                <span className="text-center text-white font-bold">
+                  Condo Chill
+                </span>
               </div>
 
               <div className="flex justify-center items-center gap-2 rounded-4xl bg-[#00000090] py-1.5 px-2.5">
                 <img src={icon3} alt="icon3" />
-                <span className="text-center text-white">Town House</span>
+                <span className="text-center text-white font-bold">
+                  Town House
+                </span>
               </div>
             </div>
           </div>

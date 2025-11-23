@@ -146,14 +146,16 @@ const Property = () => {
                     </h2>
                   </div>
 
-                  <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div
+                    onClick={() => {
+                      handlePropertyDetails(property.id);
+                    }}
+                    className="absolute inset-0 bg-black bg-opacity-30 flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
                     <img
-                      onClick={() => {
-                        handlePropertyDetails(property.id);
-                      }}
                       src={whiteArrow}
                       alt="View Details Arrow"
-                      className="w-10 h-10 p-2 bg-black/50 rounded-full"
+                      className="w-15 h-15 p-2 bg-black/50 rounded-full"
                     />
                   </div>
                 </div>
