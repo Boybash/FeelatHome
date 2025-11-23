@@ -7,7 +7,7 @@ import property5 from "../assets/property 5.png";
 import property6 from "../assets/property 6.png";
 import icon7 from "../assets/Icon 7.png";
 import icon8 from "../assets/Icon 8.png";
-import icon9 from "../assets/Icon 9.png";
+import icon9 from "../assets/icon 9.png";
 import arrow from "../assets/arrow.png";
 import { useContext } from "react";
 import { SearchContext } from "./SearchContext";
