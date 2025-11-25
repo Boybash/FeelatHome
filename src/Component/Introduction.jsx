@@ -8,7 +8,7 @@ const Introduction = () => {
     <>
       <section className="bg-[#F7F7F7] w-full mx-auto font-display">
         <div className="flex flex-col justify-center items-center gap-1 mx-auto w-full text-center py-10 px-5 mb-10">
-          <h1 className="font-bold text-2xl">Why You Should Work With Us</h1>
+          <h1 className="font-bold text-4xl">Why You Should Work With Us</h1>
           <Slide direction="left">
             <p className="flex flex-col w-[500px] mt-5 max-[520px]:w-[300px]">
               <span className="font-bold">Local Expertise</span>Our team has
@@ -37,7 +37,7 @@ const Introduction = () => {
 
         <Slide direction="bottom">
           <div className="flex flex-wrap justify-center items-center gap-10 mx-auto">
-            <div className="w-[350px] text-center my-3">
+            <div className="w-[350px] text-center my-3 bg-[#1F4B43] p-10 rounded-2xl text-white">
               <img className="mx-auto my-3" src={icon4} alt="icon4" />
               <h3 className="font-bold text-2xl mb-1">
                 Wide Range of Properties
@@ -48,7 +48,7 @@ const Introduction = () => {
               </p>
             </div>
 
-            <div className="w-[300px] text-center my-3">
+            <div className="w-[350px] text-center my-3 bg-[#1F4B43] p-10 rounded-2xl text-white">
               <img className="mx-auto my-3" src={icon5} alt="icon5" />
               <h3 className="font-bold text-2xl mb-1">Buy or Rent Homes</h3>
               <p>
@@ -57,7 +57,7 @@ const Introduction = () => {
               </p>
             </div>
 
-            <div className="w-[300px] text-center my-3">
+            <div className="w-[350px] text-center my-3 bg-[#1F4B43] p-10 rounded-2xl text-white">
               <img className="mx-auto my-3" src={icon6} alt="icon6" />
               <h3 className="font-bold text-2xl mb-1">Trusted by Thousands</h3>
               <p>

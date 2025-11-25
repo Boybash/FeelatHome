@@ -22,12 +22,14 @@ const Hero = () => {
             <h2 className="text-white rounded-4xl border-4 border-solid border-[#1F4B43] bg-[#00000090] text-center p-3 px-5 font-bold uppercase text-xl font-roboto ">
               let us guide your home
             </h2>
-            <h1 className="uppercase font-bold text-4xl text-center mt-3 text-[#E7C873]">
-              believe in finding it
-            </h1>
-            <p className=" font-bold text-[#E7C873] max-[400px]:w-[250px] text-center">
-              Search propreties for sales and to rent in Nigeria
-            </p>
+            <div className=" w-[500px] rounded-4xl border-4 border-solid border-[#1F4B43] bg-[#00000090] text-center py-2 px-2 max-[600px]:p-1 max-[600px]:w-[350px]">
+              <h1 className="uppercase font-bold text-4xl text-center mt-3 text-[#E7C873]">
+                believe in finding it
+              </h1>
+              <p className=" font-bold text-[#E7C873] text-center max-[400px]text-center">
+                Search propreties for sales and to rent in Nigeria
+              </p>
+            </div>
 
             <div className="relative">
               <input

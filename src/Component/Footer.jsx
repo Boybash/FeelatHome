@@ -32,21 +32,9 @@ const Footer = () => {
             <div>
               <h2 className="font-bold text-2xl text-white mb-4">Follow Us</h2>
               <div className="flex flex-row sm:flex-col gap-2">
-                <img
-                  className="w-10 sm:w-[60px]"
-                  src={facebooklogo}
-                  alt="facebooklogo"
-                />
-                <img
-                  className="w-10 sm:w-[60px]"
-                  src={IGlogo}
-                  alt="Instagram logo"
-                />
-                <img
-                  className="w-10 sm:w-[60px]"
-                  src={Linkedinlogo}
-                  alt="LinkedinLogo"
-                />
+                <img className="w-10 " src={facebooklogo} alt="facebooklogo" />
+                <img className="w-10" src={IGlogo} alt="Instagram logo" />
+                <img className="w-10" src={Linkedinlogo} alt="LinkedinLogo" />
               </div>
             </div>
             <ul className="text-white">
@@ -70,17 +58,17 @@ const Footer = () => {
             <ul className="text-white text-sm">
               <li className="font-bold mb-4 text-xl">Quick Links</li>
               <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
-                About
+                Listings
               </li>
               <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
-                Contact
+                Featured
               </li>
               <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
-                FAQ's
+                Property
               </li>
               <li className="mt-2 hover:text-[#E7C873] cursor-pointer">Blog</li>
               <li className="mt-2 hover:text-[#E7C873] cursor-pointer">
-                Pricing Plan
+                Contact
               </li>
             </ul>
 

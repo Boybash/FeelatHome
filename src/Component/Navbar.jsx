@@ -91,7 +91,9 @@ const Navbar = () => {
                 ? handleAddproperty
                 : handleUserClick
             }
-            className="font-bold text-white rounded-4xl py-1.5 px-4 border-4 border-solid border-[#1F4B43] hover:bg-[#1F4B43] hover:text-[#E7C873] cursor-pointer max-[550px]:hidden"
+            className={`${
+              !isLoggedIn ? "hidden" : ""
+            } font-bold text-white rounded-4xl py-1.5 px-4 border-4 border-solid border-[#1F4B43] hover:bg-[#1F4B43] hover:text-[#E7C873] cursor-pointer max-[550px]:hidden`}
           >
             List Property
           </button>
@@ -135,14 +137,14 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex justify-center items-center gap-2 px-3 ">
-          <img
-            className="max-[1050px]:hidden"
-            src={phoneLogo}
-            alt="Phonelogo"
-          />
-          <h4 className=" text-white font-bold hover:text-[#1F4B43] max-[1050px]:hidden ">
-            +2348110110111
-          </h4>
+          <button
+            onClick={handleUserClick}
+            className={`${
+              isLoggedIn ? "hidden" : ""
+            } font-bold text-white rounded-4xl py-1.5 px-4 border-4 border-solid border-[#1F4B43] hover:bg-[#1F4B43] hover:text-[#E7C873] cursor-pointer max-[1050px]:hidden`}
+          >
+            Sign Up
+          </button>
           <img
             onClick={isLoggedIn ? handleProfileCheck : handleUserClick}
             className="cursor-pointer"

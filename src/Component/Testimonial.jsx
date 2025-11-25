@@ -35,13 +35,13 @@ const Testimonial = () => {
               </p>
               <div className="flex items-center gap-8 mt-8">
                 <div className="flex flex-col">
-                  <p className="text-3xl font-extrabold text-indigo-600 text-center">
+                  <p className="text-3xl font-extrabold text-[#1F4B43] text-center">
                     10m+
                   </p>
                   <p className="text-sm text-gray-500">Happy People</p>
                 </div>
                 <div className="flex flex-col">
-                  <p className="text-3xl font-extrabold text-indigo-600 text-center">
+                  <p className="text-3xl font-extrabold text-[#1F4B43] text-center">
                     4.88
                   </p>
                   <p className="text-sm text-gray-500">Overall rating</p>
@@ -91,7 +91,7 @@ const Testimonial = () => {
         </Slide>
         <Fade>
           <div className="mx-auto flex flex-col items-center py-10">
-            <h2>Thousands of world’s leading companies trust Space</h2>
+            <h2>Thousands of world’s leading companies trust Feelathome</h2>
             <div className="flex flex-wrap justify-between items-center mx-auto gap-30 mt-10  max-[500px]:flex-col">
               <img src={amazon} alt="amazon" />
               <img src={amd} alt="amd" />
